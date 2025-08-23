@@ -1,6 +1,15 @@
 local cjson = require "cjson"
 local jwt = require "resty.jwt"
 
+-- handle preflight options request
+if ngx.req.get_method() == "OPTIONS" then
+    ngx.status = 204
+    ngx.header["Access-Control-Allow-Origin"] = "*"
+    ngx.header["Access-Control-Allow-Methods"] = "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+    ngx.header["Access-Control-Allow-Headers"] = "Authorization, Content-Type, X-User-Id"
+    return ngx.exit(204)
+end
+
 -- standard function to send unauthorized response
 local function send_unauthorized(message)
     ngx.status = ngx.HTTP_UNAUTHORIZED
