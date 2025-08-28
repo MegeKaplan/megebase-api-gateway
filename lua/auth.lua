@@ -6,7 +6,7 @@ if ngx.req.get_method() == "OPTIONS" then
     ngx.status = 204
     ngx.header["Access-Control-Allow-Origin"] = "*"
     ngx.header["Access-Control-Allow-Methods"] = "GET, POST, PUT, PATCH, DELETE, OPTIONS"
-    ngx.header["Access-Control-Allow-Headers"] = "Authorization, Content-Type, X-User-Id"
+    ngx.header["Access-Control-Allow-Headers"] = "Authorization, Content-Type, X-User-Id, X-Client-Id"
     return ngx.exit(204)
 end
 
